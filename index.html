@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlinkPoint Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Orbitron',sans-serif;background:#000;color:white;overflow-x:hidden;}
+nav{position:fixed;width:100%;top:0;padding:20px 50px;display:flex;justify-content:space-between;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);z-index:1000;}
+nav h1{color:#8a2be2;letter-spacing:2px;}
+nav a{color:white;text-decoration:none;margin-left:20px;transition:.3s;}
+nav a:hover{color:#00bfff;}
+.hero{height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;position:relative;overflow:hidden;}
+.hero img{width:250px;max-width:80%;margin-bottom:20px;}
+.hero h2{font-size:60px;background:linear-gradient(90deg,#8a2be2,#00bfff,#8a2be2);-webkit-background-clip:text;color:transparent;animation:glow 3s ease-in-out infinite alternate;}
+.hero p{margin-top:10px;font-size:18px;color:#aaa;animation:textGlow 3s ease-in-out infinite alternate;}
+@keyframes glow{0%{text-shadow:0 0 10px #8a2be2,0 0 20px #00bfff;}50%{text-shadow:0 0 30px #00bfff,0 0 60px #8a2be2;}100%{text-shadow:0 0 10px #8a2be2,0 0 20px #00bfff;}}
+@keyframes textGlow{0%{color:#aaa;}50%{color:#00bfff;}100%{color:#aaa;}}
+.particles{position:absolute;width:100%;height:100%;top:0;left:0;z-index:0;pointer-events:none;}
+section{padding:100px 10%;position:relative;z-index:1;}
+.section-title{font-size:40px;margin-bottom:40px;color:#8a2be2;text-transform:uppercase;letter-spacing:1px;}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.card{background:rgba(20,20,40,0.8);padding:30px;border-radius:15px;transition:.4s;border:1px solid #1f1f3a;text-align:center;transform:translateY(40px);opacity:0;}
+.card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 40px #00bfff;}
+.card img{width:150px;height:150px;object-fit:contain;margin-bottom:20px;}
+.card h3{margin-bottom:15px;color:#00bfff;}
+.card p{color:#aaa;font-size:16px;}
+.coming-soon{font-size:80px;color:#00bfff;text-shadow:0 0 20px #8a2be2,0 0 40px #00bfff;animation:glow 2s infinite alternate;}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
+.team-member{background:rgba(20,20,40,0.8);padding:20px;border-radius:15px;text-align:center;transform:translateY(40px);opacity:0;transition:.4s;border:1px solid #1f1f3a;}
+.team-member:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 40px #00bfff;}
+.team-member h3{color:#00bfff;margin-bottom:10px;}
+.team-member p{color:#aaa;font-size:16px;}
+.fade-in.visible{transform:translateY(0);opacity:1;transition:1s ease-out;}
+footer{text-align:center;padding:40px;background:#000;color:#666;letter-spacing:1px;}
+</style>
+</head>
+<body>
+
+<nav>
+<h1>BlinkPoint</h1>
+<div>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#team">Meet the Team</a>
+</div>
+</nav>
+
+<div class="hero">
+<img src="https://cdn.discordapp.com/attachments/1429969696660258958/1476986545088237812/Untitled438_20251222192637.jpg?ex=69a31e69&is=69a1cce9&hm=482e4fbd1be7a763f48cf1b8ec6f73b427df71cc805797bd0e36247e8b958a74&" alt="BlinkPoint Logo">
+<h2>BlinkPoint Studios</h2>
+<p>Building the Future of Immersive Games</p>
+<div class="particles" id="particles"></div>
+</div>
+
+<section id="about" class="fade-in">
+<h2 class="section-title">About</h2>
+<p>BlinkPoint is an indie studio focused on VR and multiplayer experiences with stylized visuals and futuristic gameplay. We aim to push boundaries and create memorable worlds.</p>
+</section>
+
+<section id="projects" class="fade-in">
+<h2 class="section-title">Projects</h2>
+<div class="projects">
+<div class="card">
+<img src="https://cdn.discordapp.com/attachments/1429970092204097536/1476986285930450994/Untitled366_20251123175322.jpg?ex=69a31e2b&is=69a1ccab&hm=838eb1c3372b3b58a6d990e8abb6cb74a59bf992eba6b39f3ddc2ddba4dc8a22&" alt="Ribbit Logo">
+<h3>Ribbit</h3>
+<p>A competitive frog-based party game featuring custom networking and seasonal content.</p>
+</div>
+<div class="card">
+<div class="coming-soon">?</div>
+<h3>Coming Soon…</h3>
+<p>Our next immersive project. Stay tuned!</p>
+</div>
+</div>
+</section>
+
+<section id="team" class="fade-in">
+<h2 class="section-title">Meet the Team</h2>
+<div class="team">
+<div class="team-member">
+<h3>Saph</h3>
+<p>Lead Developer</p>
+<p>Discord: saphthefrawg</p>
+</div>
+<div class="team-member">
+<h3>Timmy</h3>
+<p>Concept Artist</p>
+<p>Discord: liltimmyac.</p>
+</div>
+<div class="team-member">
+<h3>Moldy</h3>
+<p>Concept Director</p>
+<p>Discord: moldy_pancake_39376</p>
+</div>
+<div class="team-member">
+<h3>Snaptik</h3>
+<p>Voice Actor</p>
+<p>Discord: rigworkies1</p>
+</div>
+<div class="team-member">
+<h3>sticboi98</h3>
+<p>Voice Actor</p>
+<p>Discord: sticboi98</p>
+</div>
+<div class="team-member">
+<h3>Spidey</h3>
+<p>Voice Actor</p>
+<p>Discord: total.spidey</p>
+</div>
+</div>
+</section>
+
+<footer>BlinkPoint Studios 2026</footer>
+
+<script>
+const cards=document.querySelectorAll('.fade-in,.card,.team-member');
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}})},{threshold:0.3});
+cards.forEach(card=>observer.observe(card));
+const canvas=document.createElement('canvas');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+document.getElementById('particles').appendChild(canvas);
+const ctx=canvas.getContext('2d');
+let particlesArray=[];
+const particleCount=120;
+for(let i=0;i<particleCount;i++){particlesArray.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.7,dy:(Math.random()-0.5)*0.7});}
+function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(138,43,226,0.7)';ctx.fill();ctx.closePath();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateParticles);}
+animateParticles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+</script>
+
+</body>
+</html>
