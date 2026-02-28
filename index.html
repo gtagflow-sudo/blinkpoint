@@ -5,261 +5,442 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BlinkPoint Studios</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#050510;
+  --purple:#7a00ff;
+  --blue:#00ccff;
+  --glass:rgba(255,255,255,0.05);
+  --glow:#00ccff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Inter',sans-serif;
-  background:#070710;
+  background:var(--bg);
   color:white;
+  font-family:'Inter',sans-serif;
   overflow-x:hidden;
 }
 
-/* ===== GRADIENT LIGHT BACKGROUND ===== */
-
-body::before{
-  content:"";
+/* PARTICLES */
+canvas{
   position:fixed;
-  width:900px;
-  height:900px;
-  background:radial-gradient(circle,#7c3aed55 0%,transparent 70%);
-  top:-200px;
-  left:-200px;
-  z-index:-2;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  width:900px;
-  height:900px;
-  background:radial-gradient(circle,#00c3ff33 0%,transparent 70%);
-  bottom:-200px;
-  right:-200px;
-  z-index:-2;
-}
-
-/* ===== NAV ===== */
-
-header{
-  position:fixed;
+  top:0;
+  left:0;
   width:100%;
-  backdrop-filter:blur(20px);
-  background:rgba(10,10,20,0.6);
-  z-index:1000;
+  height:100%;
+  z-index:-1;
 }
 
+/* TICKER */
+.ticker{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  overflow:hidden;
+  white-space:nowrap;
+  font-family:'Orbitron';
+  font-size:0.8rem;
+  padding:6px 0;
+  z-index:1001;
+  box-shadow:0 2px 15px rgba(0,0,0,.6);
+}
+.ticker-track{
+  display:inline-block;
+  padding-left:100%;
+  animation:ticker 22s linear infinite;
+}
+.ticker a{
+  color:black;
+  font-weight:800;
+  text-decoration:none;
+  padding:4px 12px;
+  background:white;
+  border-radius:20px;
+  margin:0 12px;
+  transition:.3s;
+}
+.ticker a:hover{
+  box-shadow:0 0 20px white;
+  transform:scale(1.1);
+}
+@keyframes ticker{
+  from{transform:translateX(0);}
+  to{transform:translateX(-100%);}
+}
+
+/* NAV */
 nav{
-  max-width:1300px;
-  margin:auto;
-  padding:25px 40px;
+  position:fixed;
+  top:30px;
+  width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:15px 60px;
+  backdrop-filter:blur(15px);
+  background:rgba(0,0,0,0.55);
+  border-radius:0 0 20px 20px;
+  z-index:1000;
+  box-shadow:0 0 30px rgba(0,0,0,.6);
+  transition:.5s;
 }
-
-nav h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:20px;
-  letter-spacing:2px;
-  color:#9d4dff;
-}
-
 nav a{
-  margin-left:30px;
+  margin-left:25px;
   text-decoration:none;
-  color:#ccc;
+  color:white;
+  font-weight:600;
   transition:.3s;
 }
-
 nav a:hover{
-  color:#00c3ff;
+  color:var(--blue);
+  text-shadow:0 0 10px var(--blue);
 }
+.live{
+  color:#ff3b3b;
+  animation:pulse 1.2s infinite;
+  font-weight:700;
+  margin-left:10px;
+  font-size:0.9rem;
+  text-shadow:0 0 10px #ff3b3b;
+}
+@keyframes pulse{50%{opacity:.3;}}
 
-/* ===== HERO ===== */
-
-.hero{
-  height:100vh;
+/* HERO */
+section{
+  min-height:100vh;
+  padding:140px 80px;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding-top:100px;
+  position:relative;
 }
-
-.hero img{
-  width:240px;
-  margin-bottom:40px;
-  animation:float 6s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-}
-
-.hero h2{
+.hero h1{
   font-family:'Orbitron',sans-serif;
-  font-size:80px;
-  background:linear-gradient(90deg,#9d4dff,#00c3ff,#9d4dff);
-  background-size:200%;
+  font-size:4rem;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
   -webkit-background-clip:text;
-  color:transparent;
-  animation:gradientMove 6s linear infinite;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 30px rgba(0,204,255,.6);
+  margin-bottom:20px;
+  animation:slideIn 1.5s ease-out;
 }
-
-@keyframes gradientMove{
-  0%{background-position:0%;}
-  100%{background-position:200%;}
-}
-
 .hero p{
-  margin-top:20px;
-  font-size:22px;
-  color:#aaa;
+  font-size:1.3rem;
+  opacity:.85;
+  max-width:600px;
+  animation:fadeIn 2s ease-out;
 }
 
-/* ===== SECTIONS ===== */
-
-section{
-  max-width:1300px;
-  margin:auto;
-  padding:140px 40px;
+/* ANIMATIONS */
+@keyframes slideIn{
+  0%{opacity:0; transform:translateY(-50px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+@keyframes fadeIn{
+  0%{opacity:0;}
+  100%{opacity:1;}
 }
 
-section h2{
+/* GRID SECTIONS */
+.title{
   font-family:'Orbitron',sans-serif;
-  font-size:40px;
+  font-size:2.5rem;
   margin-bottom:60px;
-  color:#9d4dff;
+  text-shadow:0 0 20px var(--blue);
 }
-
-/* ===== GLASS CARDS ===== */
-
-.glass{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;
-  padding:40px;
-  transition:.4s;
-}
-
-.glass:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 40px rgba(0,195,255,0.3);
-}
-
-/* ===== PROJECTS ===== */
-
-.project-grid{
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:40px;
 }
-
-.project-card img{
-  width:180px;
-  margin-bottom:20px;
-}
-
-.project-card h3{
-  font-size:26px;
-  color:#00c3ff;
-  margin-bottom:10px;
-}
-
-.project-card p{
-  color:#bbb;
-}
-
-/* ===== TEAM ===== */
-
-.team-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:30px;
-}
-
-.team-member h3{
-  color:#9d4dff;
-  margin-bottom:8px;
-}
-
-/* ===== FOOTER ===== */
-
-footer{
+.card{
+  background:var(--glass);
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter:blur(15px);
+  transition:.5s;
+  cursor:pointer;
   text-align:center;
+  box-shadow:0 0 10px rgba(0,204,255,.2);
+}
+.card:hover{
+  transform:translateY(-12px) scale(1.03);
+  box-shadow:0 0 25px rgba(0,204,255,.7);
+}
+.card img{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:15px;
+  transition:.3s;
+}
+.card img:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(0,204,255,.6);
+}
+
+/* TEAM MODAL */
+.modal{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+  z-index:10000;
+}
+.modal.active{
+  opacity:1;
+  pointer-events:auto;
+}
+.modal-content{
+  background:#111;
   padding:50px;
-  background:#05050a;
-  color:#666;
+  border-radius:20px;
+  max-width:500px;
+  text-align:center;
+  box-shadow:0 0 40px var(--blue);
+  animation:modalPop 0.4s ease-out;
+}
+@keyframes modalPop{
+  0%{opacity:0; transform:scale(0.8);}
+  100%{opacity:1; transform:scale(1);}
+}
+
+/* SUGGESTION BOX */
+.suggestion-box{
+  display:flex;
+  flex-direction:column;
+  max-width:500px;
+  margin:0 auto;
+  gap:15px;
+}
+.suggestion-box input, .suggestion-box textarea{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:none;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  font-size:1rem;
+}
+.suggestion-box input:disabled{
+  opacity:0.7;
+  color:#ccc;
+}
+.suggestion-box button{
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 0 10px var(--blue);
+}
+.suggestion-box button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(0,204,255,.9);
+}
+
+/* DEV CONSOLE */
+.dev-console{
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  height:40%;
+  background:black;
+  color:lime;
+  padding:20px;
+  font-family:monospace;
+  transition:.6s;
+  overflow-y:auto;
+}
+.dev-console.active{
+  bottom:0;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:10px 30px;}
+  section{padding:140px 40px;}
+  .hero h1{font-size:3rem;}
+  .title{font-size:2rem;}
 }
 </style>
 </head>
+
 <body>
 
-<header>
+<canvas id="particles"></canvas>
+
+<div class="ticker">
+  <div class="ticker-track">
+⚡ Ribbit in development • Join our community 
+<a href="https://discord.gg/e4xScb3UKX" target="_blank">Join Discord</a> • Easter eggs await 👀 ⚡
+  </div>
+</div>
+
 <nav>
-<h1>BlinkPoint</h1>
-<div>
-<a href="#about">About</a>
-<a href="#projects">Projects</a>
-<a href="#team">Team</a>
-</div>
+  <div style="display:flex;align-items:center;">BLINKPOINT <span class="live">● LIVE</span></div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#team">Team</a>
+    <a href="#suggestions">Suggest</a>
+  </div>
 </nav>
-</header>
 
-<div class="hero">
-<img src="https://cdn.discordapp.com/attachments/1429969696660258958/1476986545088237812/Untitled438_20251222192637.jpg">
-<h2>BlinkPoint Studios</h2>
-<p>Building the Future of Multiplayer & VR</p>
-</div>
-
-<section id="about">
-<h2>About</h2>
-<div class="glass">
-<p>BlinkPoint is an independent game studio crafting immersive multiplayer and VR experiences with bold identity, polished visuals, and community-focused design.</p>
-</div>
+<section id="home" class="hero">
+<h1>BLINKPOINT STUDIOS</h1>
+<p>Stylized, immersive, and fun—just the way a studio should feel.</p>
 </section>
 
 <section id="projects">
-<h2>Projects</h2>
-<div class="project-grid">
-
-<div class="glass project-card">
-<img src="https://cdn.discordapp.com/attachments/1429970092204097536/1476986285930450994/Untitled366_20251123175322.jpg">
-<h3>Ribbit</h3>
-<p>A competitive frog-based party experience featuring custom networking and seasonal content.</p>
-</div>
-
-<div class="glass project-card">
-<h3 style="font-size:70px;">?</h3>
-<p>Next immersive project coming soon.</p>
-</div>
-
+<h2 class="title">Projects</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://cdn.discordapp.com/attachments/1429970092204097536/1476986285930450994/Untitled366_20251123175322.jpg">
+    <h3>Ribbit</h3>
+    <p>Our main project. Jump into fun, frogs, and chaos.</p>
+  </div>
+  <div class="card">
+    <h3>NO New Projects?</h3>
+    <p>Currently taking a breather… maybe something surprises soon?</p>
+  </div>
 </div>
 </section>
 
 <section id="team">
-<h2>Meet the Team</h2>
-<div class="team-grid">
-
-<div class="glass team-member"><h3>Saph</h3><p>Lead Developer</p></div>
-<div class="glass team-member"><h3>Timmy</h3><p>Concept Artist</p></div>
-<div class="glass team-member"><h3>Moldy</h3><p>Concept Director</p></div>
-<div class="glass team-member"><h3>Snaptik</h3><p>Voice Actor</p></div>
-<div class="glass team-member"><h3>sticboi98</h3><p>Voice Actor</p></div>
-<div class="glass team-member"><h3>Spidey</h3><p>Voice Actor</p></div>
-
+<h2 class="title">Meet The Team</h2>
+<div class="grid">
+<div class="card" onclick="openModal('Saph','Lead Developer • Master of chaos and fun.')">Saph</div>
+<div class="card" onclick="openModal('Timmy','Concept Artist • Makes visuals pop.')">Timmy</div>
+<div class="card" onclick="openModal('Moldy','Concept Director • Shapes worlds and stories.')">Moldy</div>
+<div class="card" onclick="openModal('Snaptik','Voice Actor • Brings characters to life.')">Snaptik</div>
+<div class="card" onclick="openModal('sticboi98','Voice Actor • Adds personality.')">sticboi98</div>
+<div class="card" onclick="openModal('Spidey','Voice Actor • Totally epic vibes.')">Spidey</div>
 </div>
 </section>
 
-<footer>
-BlinkPoint Studios © 2026
-</footer>
+<section id="suggestions">
+<h2 class="title">Send us an Idea!</h2>
+<div class="suggestion-box">
+  <input type="text" id="ideaID" disabled>
+  <textarea id="ideaContent" rows="5" placeholder="Your Idea…"></textarea>
+  <button onclick="sendIdea()">Submit</button>
+  <p id="suggestionMsg"></p>
+</div>
+</section>
+
+<!-- TEAM MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<!-- DEV CONSOLE -->
+<div class="dev-console" id="devConsole">
+> Developer Console Access Granted<br>
+> Debug fun systems online...
+</div>
+
+<script>
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<150;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2+1,speed:Math.random()*1.2});
+}
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(0,204,255,.6)";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+p.y+=p.speed;
+if(p.y>canvas.height){p.y=0;p.x=Math.random()*canvas.width;}
+});
+requestAnimationFrame(animate);
+}
+animate();
+
+/* TEAM MODAL */
+function openModal(name,desc){
+document.getElementById("modalContent").innerHTML="<h2>"+name+"</h2><p>"+desc+"</p>";
+document.getElementById("modal").classList.add("active");
+}
+function closeModal(){
+document.getElementById("modal").classList.remove("active");
+}
+
+/* EASTER EGGS + DEV */
+let typed="";
+window.addEventListener("keydown",e=>{
+typed+=e.key.toLowerCase();
+
+if(typed.includes("frog")){
+alert("🐸 Ribbit activated!");
+typed="";
+}
+
+if(typed.includes("devmode")){
+document.getElementById("devConsole").classList.toggle("active");
+typed="";
+}
+
+if(typed.includes("purpleblue")){
+document.body.style.background="linear-gradient(120deg,#7a00ff,#00ccff)";
+typed="";
+}
+
+/* Hidden easter egg for party mode */
+if(typed.includes("party")){
+document.body.style.background="radial-gradient(circle,#ff00ff,#00ffff,#ffff00)";
+typed="";
+}
+});
+
+/* GENERATE IDEA ID */
+function generateIdeaID(){
+  const id=Math.floor(Math.random()*9000000000)+1000000000;
+  document.getElementById("ideaID").value=id;
+}
+generateIdeaID();
+
+/* SUGGESTION BOX */
+async function sendIdea(){
+  const id=document.getElementById("ideaID").value;
+  const content=document.getElementById("ideaContent").value;
+  if(!content){document.getElementById("suggestionMsg").innerText="Please write your idea!";return;}
+  const payload={content:`Idea ID: ${id}\nIdea Content: ${content}`};
+  try{
+    await fetch("https://discord.com/api/webhooks/1477126246587564155/QTFx31Zsk0d5Z6DFJzAiDYcJAKhG1Lb26G_mv8YqmszDjZqndUGfc4kDNIYGzbAnB2g7",
+    {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    document.getElementById("suggestionMsg").innerText="✅ Idea submitted!";
+    document.getElementById("ideaContent").value="";
+    generateIdeaID();
+  }catch(e){
+    document.getElementById("suggestionMsg").innerText="❌ Failed to submit.";
+  }
+}
+</script>
 
 </body>
 </html>
