@@ -2,8 +2,8 @@ const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-let particles = [];
 
+let particles = [];
 for (let i = 0; i < 150; i++) {
   particles.push({
     x: Math.random() * canvas.width,
@@ -15,23 +15,20 @@ for (let i = 0; i < 150; i++) {
 }
 
 function animate() {
-  ctx.fillStyle = 'rgba(9,9,15,0.25)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(12,12,20,0.25)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
   particles.forEach(p => {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(138,43,226,0.6)';
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(138,43,226,0.6)';
     ctx.fill();
-    p.x += p.dx; p.y += p.dy;
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    p.x += p.dx;
+    p.y += p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
   });
   requestAnimationFrame(animate);
 }
 
 animate();
-
-window.onresize = () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-};
+window.onresize = () => {canvas.width = window.innerWidth; canvas.height = window.innerHeight;}
