@@ -5,227 +5,201 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BlinkPoint Studios</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* ============================= */
-/* RESET */
-/* ============================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#070710;
+  color:white;
+  overflow-x:hidden;
 }
 
-html {
-  scroll-behavior: smooth;
+/* ===== GRADIENT LIGHT BACKGROUND ===== */
+
+body::before{
+  content:"";
+  position:fixed;
+  width:900px;
+  height:900px;
+  background:radial-gradient(circle,#7c3aed55 0%,transparent 70%);
+  top:-200px;
+  left:-200px;
+  z-index:-2;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0b0b14;
-  color: #ffffff;
-  overflow-x: hidden;
+body::after{
+  content:"";
+  position:fixed;
+  width:900px;
+  height:900px;
+  background:radial-gradient(circle,#00c3ff33 0%,transparent 70%);
+  bottom:-200px;
+  right:-200px;
+  z-index:-2;
 }
 
-/* ============================= */
-/* BACKGROUND CANVAS */
-/* ============================= */
+/* ===== NAV ===== */
 
-#bgCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+header{
+  position:fixed;
+  width:100%;
+  backdrop-filter:blur(20px);
+  background:rgba(10,10,20,0.6);
+  z-index:1000;
 }
 
-/* ============================= */
-/* NAVIGATION */
-/* ============================= */
-
-header {
-  position: fixed;
-  width: 100%;
-  background: rgba(10,10,20,0.7);
-  backdrop-filter: blur(12px);
-  z-index: 1000;
+nav{
+  max-width:1300px;
+  margin:auto;
+  padding:25px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-nav {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+nav h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:20px;
+  letter-spacing:2px;
+  color:#9d4dff;
 }
 
-nav h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 22px;
-  color: #9d4dff;
-  letter-spacing: 1px;
+nav a{
+  margin-left:30px;
+  text-decoration:none;
+  color:#ccc;
+  transition:.3s;
 }
 
-nav a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: #ddd;
-  font-weight: 500;
-  transition: 0.3s ease;
+nav a:hover{
+  color:#00c3ff;
 }
 
-nav a:hover {
-  color: #00c3ff;
+/* ===== HERO ===== */
+
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:100px;
 }
 
-/* ============================= */
-/* HERO */
-/* ============================= */
-
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 80px;
-  text-align: center;
+.hero img{
+  width:240px;
+  margin-bottom:40px;
+  animation:float 6s ease-in-out infinite;
 }
 
-.hero img {
-  width: 220px;
-  margin-bottom: 30px;
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
 }
 
-.hero h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 64px;
-  background: linear-gradient(90deg,#9d4dff,#00c3ff);
-  -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 15px;
+.hero h2{
+  font-family:'Orbitron',sans-serif;
+  font-size:80px;
+  background:linear-gradient(90deg,#9d4dff,#00c3ff,#9d4dff);
+  background-size:200%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:gradientMove 6s linear infinite;
 }
 
-.hero p {
-  font-size: 20px;
-  color: #aaa;
+@keyframes gradientMove{
+  0%{background-position:0%;}
+  100%{background-position:200%;}
 }
 
-/* ============================= */
-/* SECTIONS */
-/* ============================= */
-
-section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 120px 40px;
+.hero p{
+  margin-top:20px;
+  font-size:22px;
+  color:#aaa;
 }
 
-section h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 36px;
-  margin-bottom: 40px;
-  color: #9d4dff;
+/* ===== SECTIONS ===== */
+
+section{
+  max-width:1300px;
+  margin:auto;
+  padding:140px 40px;
 }
 
-/* ============================= */
-/* PROJECTS */
-/* ============================= */
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-  gap: 40px;
+section h2{
+  font-family:'Orbitron',sans-serif;
+  font-size:40px;
+  margin-bottom:60px;
+  color:#9d4dff;
 }
 
-.project-card {
-  background: rgba(20,20,40,0.85);
-  padding: 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(100,100,255,0.1);
-  text-align: center;
-  transition: 0.4s ease;
+/* ===== GLASS CARDS ===== */
+
+.glass{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:40px;
+  transition:.4s;
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 40px rgba(0,195,255,0.4);
+.glass:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(0,195,255,0.3);
 }
 
-.project-card img {
-  width: 160px;
-  margin-bottom: 20px;
+/* ===== PROJECTS ===== */
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
 }
 
-.project-card h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #00c3ff;
+.project-card img{
+  width:180px;
+  margin-bottom:20px;
 }
 
-.project-card p {
-  color: #bbb;
+.project-card h3{
+  font-size:26px;
+  color:#00c3ff;
+  margin-bottom:10px;
 }
 
-/* ============================= */
-/* TEAM */
-/* ============================= */
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 30px;
+.project-card p{
+  color:#bbb;
 }
 
-.team-member {
-  background: rgba(20,20,40,0.85);
-  padding: 30px;
-  border-radius: 16px;
-  text-align: center;
-  transition: 0.3s ease;
+/* ===== TEAM ===== */
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
 }
 
-.team-member:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(157,77,255,0.4);
+.team-member h3{
+  color:#9d4dff;
+  margin-bottom:8px;
 }
 
-.team-member h3 {
-  color: #9d4dff;
-  margin-bottom: 8px;
+/* ===== FOOTER ===== */
+
+footer{
+  text-align:center;
+  padding:50px;
+  background:#05050a;
+  color:#666;
 }
-
-/* ============================= */
-/* FOOTER */
-/* ============================= */
-
-footer {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-  background: #000;
-}
-
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
-
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 42px;
-  }
-}
-
 </style>
 </head>
-
 <body>
-
-<canvas id="bgCanvas"></canvas>
 
 <header>
 <nav>
@@ -239,29 +213,31 @@ footer {
 </header>
 
 <div class="hero">
-<img src="https://cdn.discordapp.com/attachments/1429969696660258958/1476986545088237812/Untitled438_20251222192637.jpg" alt="BlinkPoint Logo">
+<img src="https://cdn.discordapp.com/attachments/1429969696660258958/1476986545088237812/Untitled438_20251222192637.jpg">
 <h2>BlinkPoint Studios</h2>
-<p>Immersive Multiplayer & VR Game Experiences</p>
+<p>Building the Future of Multiplayer & VR</p>
 </div>
 
 <section id="about">
 <h2>About</h2>
-<p>BlinkPoint is an independent game development studio building immersive multiplayer and VR experiences with strong identity, stylized visuals, and community-driven design.</p>
+<div class="glass">
+<p>BlinkPoint is an independent game studio crafting immersive multiplayer and VR experiences with bold identity, polished visuals, and community-focused design.</p>
+</div>
 </section>
 
 <section id="projects">
 <h2>Projects</h2>
 <div class="project-grid">
 
-<div class="project-card">
-<img src="https://cdn.discordapp.com/attachments/1429970092204097536/1476986285930450994/Untitled366_20251123175322.jpg" alt="Ribbit Logo">
+<div class="glass project-card">
+<img src="https://cdn.discordapp.com/attachments/1429970092204097536/1476986285930450994/Untitled366_20251123175322.jpg">
 <h3>Ribbit</h3>
-<p>A competitive frog-based party game with seasonal content and custom networking.</p>
+<p>A competitive frog-based party experience featuring custom networking and seasonal content.</p>
 </div>
 
-<div class="project-card">
-<h3 style="font-size:60px;">?</h3>
-<p>Coming Soon — Our next immersive experience.</p>
+<div class="glass project-card">
+<h3 style="font-size:70px;">?</h3>
+<p>Next immersive project coming soon.</p>
 </div>
 
 </div>
@@ -271,71 +247,19 @@ footer {
 <h2>Meet the Team</h2>
 <div class="team-grid">
 
-<div class="team-member"><h3>Saph</h3><p>Lead Developer</p></div>
-<div class="team-member"><h3>Timmy</h3><p>Concept Artist</p></div>
-<div class="team-member"><h3>Moldy</h3><p>Concept Director</p></div>
-<div class="team-member"><h3>Snaptik</h3><p>Voice Actor</p></div>
-<div class="team-member"><h3>sticboi98</h3><p>Voice Actor</p></div>
-<div class="team-member"><h3>Spidey</h3><p>Voice Actor</p></div>
+<div class="glass team-member"><h3>Saph</h3><p>Lead Developer</p></div>
+<div class="glass team-member"><h3>Timmy</h3><p>Concept Artist</p></div>
+<div class="glass team-member"><h3>Moldy</h3><p>Concept Director</p></div>
+<div class="glass team-member"><h3>Snaptik</h3><p>Voice Actor</p></div>
+<div class="glass team-member"><h3>sticboi98</h3><p>Voice Actor</p></div>
+<div class="glass team-member"><h3>Spidey</h3><p>Voice Actor</p></div>
 
 </div>
 </section>
 
 <footer>
-BlinkPoint Studios — Building the Future of Games
+BlinkPoint Studios © 2026
 </footer>
-
-<script>
-
-/* ============================= */
-/* PARTICLE BACKGROUND */
-/* ============================= */
-
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for (let i = 0; i < 140; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    dx: (Math.random() - 0.5) * 0.5,
-    dy: (Math.random() - 0.5) * 0.5
-  });
-}
-
-function animate() {
-  ctx.fillStyle = "rgba(11,11,20,0.3)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle = "rgba(157,77,255,0.7)";
-    ctx.fill();
-    p.x += p.dx;
-    p.y += p.dy;
-
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-</script>
 
 </body>
 </html>
