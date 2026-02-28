@@ -22,18 +22,17 @@ nav a:hover{color:#00bfff;}
 section{padding:100px 10%;position:relative;z-index:1;}
 .section-title{font-size:40px;margin-bottom:40px;color:#8a2be2;text-transform:uppercase;letter-spacing:1px;}
 .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.card{background:rgba(20,20,40,0.8);padding:30px;border-radius:15px;transition:.4s;border:1px solid #1f1f3a;text-align:center;transform:translateY(40px);opacity:0;}
+.card{background:rgba(20,20,40,0.8);padding:30px;border-radius:15px;transition:.4s;border:1px solid #1f1f3a;text-align:center;transform:translateY(0);opacity:1;}
 .card:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 40px #00bfff;}
 .card img{width:150px;height:150px;object-fit:contain;margin-bottom:20px;}
 .card h3{margin-bottom:15px;color:#00bfff;}
 .card p{color:#aaa;font-size:16px;}
 .coming-soon{font-size:80px;color:#00bfff;text-shadow:0 0 20px #8a2be2,0 0 40px #00bfff;animation:glow 2s infinite alternate;}
 .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
-.team-member{background:rgba(20,20,40,0.8);padding:20px;border-radius:15px;text-align:center;transform:translateY(40px);opacity:0;transition:.4s;border:1px solid #1f1f3a;}
+.team-member{background:rgba(20,20,40,0.8);padding:20px;border-radius:15px;text-align:center;transform:translateY(0);opacity:1;transition:.4s;border:1px solid #1f1f3a;}
 .team-member:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 0 40px #00bfff;}
 .team-member h3{color:#00bfff;margin-bottom:10px;}
 .team-member p{color:#aaa;font-size:16px;}
-.fade-in.visible{transform:translateY(0);opacity:1;transition:1s ease-out;}
 footer{text-align:center;padding:40px;background:#000;color:#666;letter-spacing:1px;}
 </style>
 </head>
@@ -55,12 +54,12 @@ footer{text-align:center;padding:40px;background:#000;color:#666;letter-spacing:
 <div class="particles" id="particles"></div>
 </div>
 
-<section id="about" class="fade-in">
+<section id="about">
 <h2 class="section-title">About</h2>
 <p>BlinkPoint is an indie studio focused on VR and multiplayer experiences with stylized visuals and futuristic gameplay. We aim to push boundaries and create memorable worlds.</p>
 </section>
 
-<section id="projects" class="fade-in">
+<section id="projects">
 <h2 class="section-title">Projects</h2>
 <div class="projects">
 <div class="card">
@@ -76,7 +75,7 @@ footer{text-align:center;padding:40px;background:#000;color:#666;letter-spacing:
 </div>
 </section>
 
-<section id="team" class="fade-in">
+<section id="team">
 <h2 class="section-title">Meet the Team</h2>
 <div class="team">
 <div class="team-member">
@@ -115,9 +114,6 @@ footer{text-align:center;padding:40px;background:#000;color:#666;letter-spacing:
 <footer>BlinkPoint Studios 2026</footer>
 
 <script>
-const cards=document.querySelectorAll('.fade-in,.card,.team-member');
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}})},{threshold:0.3});
-cards.forEach(card=>observer.observe(card));
 const canvas=document.createElement('canvas');
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
